@@ -18,41 +18,33 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-    @ParameterizedTest()
-    @CsvFileSource(resources = "/data.csv", delimiter = '|', numLinesToSkip = 2)
-    public void getNextCurrentRadioStation(int currentRadioStation, int expected) {
+    @Test
+    public void getNextCurrentRadioStation() {
         Radio cond = new Radio();
-        cond.setNextCurrentRadioStation(currentRadioStation);
-       int actual = cond.getNextCurrentRadioStation(currentRadioStation);
-
+        cond.setNextCurrentRadioStation(5);
+        int actual = cond.getNextCurrentRadioStation();
+        int expected = 6;
         assertEquals(expected, actual);
     }
 
-    @ParameterizedTest()
-    @CsvFileSource(resources = "/data1.csv", delimiter = '|', numLinesToSkip = 2)
-    public void getPrevCurrentRadioStation(int currentRadioStation, int expected) {
-        Radio cond = new Radio();
-        cond.setPrevCurrentRadioStation(currentRadioStation);
-        int actual = cond.getPrevCurrentRadioStation(currentRadioStation);
-                assertEquals(expected, actual);
-    }
+
 
     @ParameterizedTest()
     @CsvFileSource(resources = "/data2.csv", delimiter = '|', numLinesToSkip = 2)
-    public void getIncreaseTheVolumeLevel(int currentVolume,int expected ) {
+    public void getIncreaseTheVolumeLevel(int currentVolume, int expected) {
         Radio cond = new Radio();
         cond.setIncreaseTheVolumeLevel(currentVolume);
         int actual = cond.getIncreaseTheVolumeLevel(currentVolume);
-                assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
     }
 
     @ParameterizedTest()
     @CsvFileSource(resources = "/data3.csv", delimiter = '|', numLinesToSkip = 2)
-    public void getDecreaseTheVolumeLevel(int currentVolume,int expected) {
+    public void getDecreaseTheVolumeLevel(int currentVolume, int expected) {
         Radio cond = new Radio();
         cond.setDecreaseTheVolumeLevel(currentVolume);
         int actual = cond.getDecreaseTheVolumeLevel(currentVolume);
-               assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }

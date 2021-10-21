@@ -1,7 +1,8 @@
 package ru.netology.radio;
 
 public class Radio {
-    public int radioStations;
+    private int radioStations;
+
 
     public int getRadioStations() {
         return radioStations;
@@ -11,30 +12,26 @@ public class Radio {
         radioStations = newRadioStations;
     }
 
-    public int nextCurrentRadioStation;
+    private int nextCurrentRadioStation;
 
-    public int getNextCurrentRadioStation(int currentRadioStation) {
+
+    public int getNextCurrentRadioStation() {
 
         return nextCurrentRadioStation;
     }
 
-    public byte setNextCurrentRadioStation(int newNextCurrentRadioStation) {
+    public void setNextCurrentRadioStation(int newNextCurrentRadioStation) {
         nextCurrentRadioStation = newNextCurrentRadioStation;
         if (nextCurrentRadioStation == 9) {
             nextCurrentRadioStation = 0;
-            return 0;
-            // } else
-            // if (currentRadioStation == 0) {
-            // currentRadioStation = 9;
-//return;
+            return;
         }
         if (nextCurrentRadioStation < 9) {
             nextCurrentRadioStation = nextCurrentRadioStation + 1;
         }
-        return 0;
     }
 
-    public int prevCurrentRadioStation;
+    private int prevCurrentRadioStation;
 
     public int getPrevCurrentRadioStation(int currentRadioStation) {
         return prevCurrentRadioStation;
@@ -51,7 +48,7 @@ public class Radio {
         }
     }
 
-    public int increaseTheVolumeLevel;
+    private int increaseTheVolumeLevel;
 
     public int getIncreaseTheVolumeLevel(int currentVolume) {
         return increaseTheVolumeLevel;
@@ -68,7 +65,7 @@ public class Radio {
         }
     }
 
-    public int decreaseTheVolumeLevel;
+    private int decreaseTheVolumeLevel;
 
     public int getDecreaseTheVolumeLevel(int currentVolume) {
         return decreaseTheVolumeLevel;
@@ -84,6 +81,7 @@ public class Radio {
             decreaseTheVolumeLevel = decreaseTheVolumeLevel - 1;
         }
     }
+
 
 }
 
