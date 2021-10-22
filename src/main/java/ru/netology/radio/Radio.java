@@ -2,7 +2,20 @@ package ru.netology.radio;
 
 public class Radio {
     private int radioStations;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int currentVolume;
+    private int currentStation;
+    private int minVolume = 0;
+    private int maxVolume = 10;
 
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
 
     public int getRadioStations() {
         return radioStations;
@@ -12,77 +25,72 @@ public class Radio {
         radioStations = newRadioStations;
     }
 
-    private int nextCurrentRadioStation;
+    private int currentRadioStation;
 
-
-    public int getNextCurrentRadioStation() {
-
-        return nextCurrentRadioStation;
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void setNextCurrentRadioStation(int newNextCurrentRadioStation) {
-        nextCurrentRadioStation = newNextCurrentRadioStation;
-        if (nextCurrentRadioStation == 9) {
-            nextCurrentRadioStation = 0;
+    public void Radio(int minVolume, int maxVolume, int minStation, int maxStation) {
+        this.maxStation = maxStation;
+        this.minStation = minStation;
+        this.minVolume = minVolume;
+        this.maxVolume = maxVolume;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume == maxVolume) {
+            this.currentVolume = maxVolume;
             return;
         }
-        if (nextCurrentRadioStation < 9) {
-            nextCurrentRadioStation = nextCurrentRadioStation + 1;
-        }
-    }
-
-    private int prevCurrentRadioStation;
-
-    public int getPrevCurrentRadioStation(int currentRadioStation) {
-        return prevCurrentRadioStation;
-    }
-
-    public void setPrevCurrentRadioStation(int newPrevCurrentRadioStation) {
-        prevCurrentRadioStation = newPrevCurrentRadioStation;
-        if (prevCurrentRadioStation == 0) {
-            prevCurrentRadioStation = 9;
+        if (currentVolume == minVolume) {
+            this.currentVolume = minVolume;
             return;
         }
-        if (prevCurrentRadioStation <= 9) {
-            prevCurrentRadioStation = prevCurrentRadioStation - 1;
+        this.currentVolume = currentVolume;
+    }
+
+    public void setUpCurrentVolume() {
+        if (currentVolume < maxVolume) {
+            currentVolume = currentVolume + 1;
         }
     }
 
-    private int increaseTheVolumeLevel;
-
-    public int getIncreaseTheVolumeLevel(int currentVolume) {
-        return increaseTheVolumeLevel;
+    public void setDownCurrentVolume() {
+        if (currentVolume > minVolume) {
+            currentVolume = currentVolume - 1;
+        }
     }
 
-    public void setIncreaseTheVolumeLevel(int newIncreaseTheVolumeLevel) {
-        increaseTheVolumeLevel = newIncreaseTheVolumeLevel;
-        if (increaseTheVolumeLevel == 10) {
-            increaseTheVolumeLevel = 10;
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(int currentStation) {
+
+        this.currentStation = currentStation;
+
+    }
+
+    public void setUpCurrentStation() {
+        if (currentStation == maxStation) {
+            this.currentStation = minStation;
             return;
         }
-        if (increaseTheVolumeLevel <= 10) {
-            increaseTheVolumeLevel = increaseTheVolumeLevel + 1;
-        }
-    }
+     this.currentStation++;
 
-    private int decreaseTheVolumeLevel;
-
-    public int getDecreaseTheVolumeLevel(int currentVolume) {
-        return decreaseTheVolumeLevel;
-    }
-
-    public void setDecreaseTheVolumeLevel(int newDecreaseTheVolumeLevel) {
-        decreaseTheVolumeLevel = newDecreaseTheVolumeLevel;
-        if (decreaseTheVolumeLevel == 0) {
-            decreaseTheVolumeLevel = 0;
+    }public void setDownCurrentRadioStation(){
+        if (currentStation == minStation) {
+            this.currentStation = maxStation;
             return;
         }
-        if (decreaseTheVolumeLevel <= 10) {
-            decreaseTheVolumeLevel = decreaseTheVolumeLevel - 1;
-        }
+        this.currentStation--;
     }
-
-
 }
 
 
