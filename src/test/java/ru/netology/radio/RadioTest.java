@@ -2,7 +2,6 @@ package ru.netology.radio;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,39 +16,59 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void setUpCurrentVolume1() {
+    @ParameterizedTest
+    @CsvSource({
+            "Station number_0,0,1",
+            "Station number_5,5,6",
+            "Station number_9Forward,9,0",
+    })
+    public void nextStationNumbeUp(String name, int currentStation, int expected) {
         Radio cond = new Radio();
-        cond.setCurrentVolume(10);
-        cond.setUpCurrentVolume();
-        int expected = 10;
-        assertEquals(expected, cond.getCurrentVolume());
+        cond.setCurrentStation(currentStation);
+        cond.UpCurrentStation();
+        int actual = cond.getCurrentStation();
+        assertEquals(expected, actual);
     }
 
-    @Test
-    public void setDownCurrentVolume() {
+    @ParameterizedTest
+    @CsvSource({
+            "Station number_0,0,9",
+            "Station number_5,5,4",
+            "Station number_9,9,8",
+    })
+    public void nextStationNumbeDoun(String name, int currentStation, int expected) {
         Radio cond = new Radio();
-        cond.setCurrentVolume(0);
-        cond.setDownCurrentVolume();
-        int expected = 0;
-        assertEquals(expected, cond.getCurrentVolume());
+        cond.setCurrentStation(currentStation);
+        cond.DownCurrentRadioStation();
+        int actual = cond.getCurrentStation();
+        assertEquals(expected, actual);
     }
 
-    @Test
-    public void setUpCurrentStation() {
+    @ParameterizedTest
+    @CsvSource({
+            "volume_0,0,1",
+            "volume_5,5,6",
+            "volume_10,10,10",
+    })
+    public void increaseTheVolume(String name, int currentStation, int expected) {
         Radio cond = new Radio();
-        cond.setCurrentStation(8);
-        cond.setUpCurrentStation();
-        int expected = 9;
-        assertEquals(expected, cond.getCurrentStation());
+        cond.setCurrentVolume(currentStation);
+        cond.UpCurrentVolume();
+        int actual = cond.getCurrentVolume();
+        assertEquals(expected, actual);
 
-    }
-    @Test
-    public void setDownCurrentRadioStation(){
+    } @ParameterizedTest
+    @CsvSource({
+            "volume_0,0,0",
+            "volume_5,5,4",
+            "volume_10,10,9",
+    })
+    public void volumeReduction(String name, int currentStation, int expected) {
         Radio cond = new Radio();
-        cond.setCurrentStation(2);
-        cond.setDownCurrentRadioStation();
-        int expected =1;
-        assertEquals(expected,cond.getCurrentStation());
+        cond.setCurrentVolume(currentStation);
+        cond.DounCurrentVolume();
+        int actual = cond.getCurrentVolume();
+        assertEquals(expected, actual);
+
     }
 }
