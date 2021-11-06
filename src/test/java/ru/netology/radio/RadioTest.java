@@ -7,12 +7,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
-    @Test
-    public void getRadioStations() {
-        Radio cond = new Radio();
-        cond.setRadioStations(5);
-        int actual = cond.getRadioStations();
-        int expected = 5;
+    Radio coud=new Radio();
+    @ParameterizedTest
+    @CsvSource({
+            "Station number_0,0,0",
+            "Station number_5,5,5",
+            "Station number_10,10,10",
+    })
+    public void RadioStations(String name, int currentStation, int expected) {
+       coud.setCurrentStation(currentStation);
+        coud.RadioStations(currentStation);
+
+        int actual = coud.getCurrentStation();
+
         assertEquals(expected, actual);
     }
 
@@ -20,7 +27,7 @@ public class RadioTest {
     @CsvSource({
             "Station number_0,0,1",
             "Station number_5,5,6",
-            "Station number_9Forward,9,0",
+            "Station number_10,10,0",
     })
     public void nextStationNumbeUp(String name, int currentStation, int expected) {
         Radio cond = new Radio();
@@ -32,7 +39,7 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "Station number_0,0,9",
+            "Station number_0,0,10",
             "Station number_5,5,4",
             "Station number_9,9,8",
     })
@@ -48,7 +55,7 @@ public class RadioTest {
     @CsvSource({
             "volume_0,0,1",
             "volume_5,5,6",
-            "volume_10,10,10",
+            "volume_100,100,100",
     })
     public void increaseTheVolume(String name, int currentStation, int expected) {
         Radio cond = new Radio();
@@ -61,7 +68,7 @@ public class RadioTest {
     @CsvSource({
             "volume_0,0,0",
             "volume_5,5,4",
-            "volume_10,10,9",
+            "volume_100,100,99",
     })
     public void volumeReduction(String name, int currentStation, int expected) {
         Radio cond = new Radio();

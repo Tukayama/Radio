@@ -1,18 +1,33 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int radioStations;
-
+//    private int radioStations;
+    private int minNumberStation = 0;
+    private int maxNumberStation = 10;
+    private int minSoundVolume = 0;
+    private int maxSoundVolume = 100;
     private int currentVolume;
     private int currentStation;
 
+//
+//    public int getRadioStations() {
+//        return radioStations;
+//    }
 
-    public int getRadioStations() {
-        return radioStations;
-    }
+//    public Radio(int maxNumberStation) {
+//        this.maxNumberStation = maxNumberStation;
+//    }
 
-    public void setRadioStations(int newRadioStations) {
-        radioStations = newRadioStations;
+    public void RadioStations(int currentStation) {
+        if (currentStation >= maxNumberStation) {
+            this.currentStation = maxNumberStation;
+            return;
+        }
+        if (currentStation <= minNumberStation) {
+            this.currentStation = minNumberStation;
+            return;
+        }
+        this.currentStation=currentStation;
     }
 
     void setCurrentStation(int currentStation) {
@@ -31,10 +46,9 @@ public class Radio {
         return currentVolume;
     }
 
-
     public void UpCurrentVolume() {
-        if (currentVolume == 10) {
-            this.currentVolume = 10;
+        if (currentVolume == maxSoundVolume) {
+            this.currentVolume = maxSoundVolume;
             return;
         }
         currentVolume++;
@@ -42,8 +56,8 @@ public class Radio {
     }
 
     public void DounCurrentVolume() {
-        if (currentVolume == 0) {
-            this.currentVolume = 0;
+        if (currentVolume == minSoundVolume) {
+            this.currentVolume = minSoundVolume;
             return;
         }
         currentVolume--;
@@ -52,8 +66,8 @@ public class Radio {
     }
 
     public void UpCurrentStation() {
-        if (currentStation == 9) {
-            this.currentStation = 0;
+        if (currentStation >= maxNumberStation) {
+            this.currentStation = minNumberStation;
             return;
         }
         currentStation++;
@@ -61,13 +75,14 @@ public class Radio {
     }
 
     public void DownCurrentRadioStation() {
-        if (currentStation == 0) {
-            this.currentStation = 9;
+        if (currentStation == minNumberStation) {
+            this.currentStation = maxNumberStation;
             return;
         }
         currentStation--;
         return;
     }
+
 }
 
 
